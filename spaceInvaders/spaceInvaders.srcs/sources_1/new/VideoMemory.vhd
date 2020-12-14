@@ -19,10 +19,12 @@ constant max_x : integer := 640;
 constant min_y : integer := 0;
 constant min_x : integer := 0;
 constant color_4 : std_logic_vector(11 downto 0) := "111100000000"; --red
-constant color_3 : std_logic_vector(11 downto 0) := "000000110000"; --dark green
-constant color_2 : std_logic_vector(11 downto 0) := "000001110000"; --light green
-constant color_1 : std_logic_vector(11 downto 0) := "000011110000"; --lighter green
+constant color_3 : std_logic_vector(11 downto 0) := "000001110000"; --green
+constant color_2 : std_logic_vector(11 downto 0) := "000001111000"; --green/blue
+constant color_1 : std_logic_vector(11 downto 0) := "010100000101"; --purple
 constant color_0 : std_logic_vector(11 downto 0) := "111111111111";-- white
+constant color_5 : std_logic_vector(11 downto 0) := "011100110111"; --darkest purple for background
+constant color_6 : std_logic_vector(11 downto 0) := "110100001101"; --purple for title
 signal reset : std_logic := '0';
 signal reset_fin : std_logic := '0';
 signal difficulty_has_changed : std_logic := '0';
@@ -1417,9 +1419,9 @@ begin
             
             if game_state = "00" then
                 if pixel_y >= 65 and pixel_y <= 400 and start_screen(pixel_y - 65)(max_x - pixel_x) = '1' then
-                     red <= color_1(11 downto 8);
-                     green <= color_1(7 downto 4);
-                     blue <= color_1(3 downto 0);
+                     red <= color_6(11 downto 8);
+                     green <= color_6(7 downto 4);
+                     blue <= color_6(3 downto 0);
                  elsif background_1(pixel_y)(max_x - pixel_x) = '1' then
                     red <= color_0(11 downto 8);
                     green <= color_0(7 downto 4);
@@ -1451,9 +1453,9 @@ begin
             end if;
             --background color
             if background_1( pixel_y)(max_x - pixel_x) = '0' then
-            red <= sw(11 downto 8);
-            green <= sw(7 downto 4);
-            blue <= sw(3 downto 0);
+            red <= color_5(11 downto 8);
+            green <= color_5(7 downto 4);
+            blue <= color_5(3 downto 0);
             else
             red <= color_0(11 downto 8);
             green <= color_0(7 downto 4);
